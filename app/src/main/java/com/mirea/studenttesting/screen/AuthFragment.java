@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,8 +48,23 @@ public class AuthFragment extends Fragment {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.action_authFragment_to_questionsListFragment);
         }
     }
+    private String areFieldsValid(String email, String password) {
+        System.out.println(email + " " + password);
+        if (email.isEmpty() || password.isEmpty()) {
+            return "Нужно заполнить поле";
+        } else if (!isValidEmail(email)) {
+            return "Пожалуйста, введите валидный email";
+        } else {
+            return null;
+        }
+    }
 
     private void sendCredentials(String email, String password, String param) {
+        String validationError = areFieldsValid(email, password);
+        if (validationError != null) {
+            Toast.makeText(getContext(), validationError, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (param.equals(REGISRTATION)) {
             firebaseControll.registration(email, password, s -> {
                 saveAuthData(email, password);
@@ -61,7 +77,6 @@ public class AuthFragment extends Fragment {
             });
         }
     }
-
     private void saveAuthData(String email, String password) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("email", email);
@@ -71,4 +86,9 @@ public class AuthFragment extends Fragment {
 
     private static final String REGISRTATION = "reg";
     private static final String AUTH = "auth";
+    private boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+
 }
