@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "887384657431",
+    "firebase_url": "https://student-testing-d8372-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "student-testing-d8372",
+    "storage_bucket": "student-testing-d8372.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887384657431:android:a05157a6dffec3d5859652",
+        "android_client_info": {
+          "package_name": "com.mirea.studenttesting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9pr4Dma1m6TSNrp21r0nJIOlZbRY1GpQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
